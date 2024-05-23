@@ -39,3 +39,56 @@ Script para backup e restauração de VMs no Proxmox VE com suporte a unidades d
 2. **Tornar o Script Executável**:
    ```bash
    chmod +x backup_restore_vms.sh
+## Como Usar
+
+1. **Salvar o Script**: Salve o script em um arquivo, por exemplo, `backup_restore_vms.sh`.
+
+2. **Tornar o Script Executável**:
+   ```bash
+   chmod +x backup_restore_vms.sh
+3. **Executar o Script**:
+   ```bash
+   ./backup_restore_vms.sh
+### Fluxo de Operação
+
+1. **Escolher Operação:
+O script pergunta ao usuário se deseja fazer backup ou restaurar.
+
+2. **Backup:
+
+Pergunta ao usuário se deve parar as VMs durante o backup para garantir a consistência dos dados.
+Pergunta ao usuário se deseja fazer backup localmente, em uma unidade de rede ou transferir para um novo servidor.
+Realiza o backup das VMs conforme a escolha do usuário.
+Se a opção de transferência for escolhida, transfere os backups para o novo servidor.
+1. **Restauração:
+
+Pergunta ao usuário se deseja restaurar todas as VMs ou apenas algumas específicas.
+Restaura os discos e arquivos de configuração das VMs a partir dos backups.
+Inicia automaticamente as VMs após a restauração.
+### Exemplo de Uso
+Backup**:
+   bash
+   ./backup_restore_vms.sh
+   Deseja fazer backup ou restaurar? (backup/restaurar)
+   backup
+   Deseja parar as VMs durante o backup para garantir a consistência dos dados? (s/n)
+   s
+   Deseja fazer backup localmente, em uma unidade de rede ou transferir para um novo servidor? (local/rede/transferir)
+   local
+
+### Restauração
+bash
+
+
+Deseja fazer backup ou restaurar? (backup/restaurar)
+restaurar
+Deseja restaurar todas as VMs ou apenas algumas? (todas/algumas)
+algumas
+Digite os IDs das VMs para restaurar, separados por vírgulas (ex: 100, 101, 102):
+100, 101
+
+### Considerações Finais
+Compatibilidade de Configurações: Verifique se as configurações de rede e armazenamento no novo servidor são compatíveis com as configurações no antigo servidor.
+Espaço em Disco: Assegure-se de que o novo servidor tenha espaço em disco suficiente para armazenar todas as VMs restauradas.
+Testar as VMs: Após restaurar as VMs no novo servidor, teste-as para garantir que estejam funcionando corretamente.
+Backup Regular: Configure um plano de backup regular no novo servidor para garantir a segurança dos dados em caso de falhas futuras.
